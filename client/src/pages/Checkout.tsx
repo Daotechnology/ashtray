@@ -12,13 +12,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import { products } from "@/lib/data";
-
-// Mock cart items for checkout display
-const cartItems = [
-  { ...products[0], quantity: 1, size: 'L' },
-  { ...products[1], quantity: 1, size: 'M' }
-];
+import { useCart } from "@/lib/CartContext";
 
 const checkoutSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -38,6 +32,7 @@ type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 export default function Checkout() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const { items, total: subtotal, clearCart } = useCart();
   const [step, setStep] = useState<'shipping' | 'payment' | 'success'>('shipping');
   
   const form = useForm<CheckoutFormValues>({
@@ -56,8 +51,7 @@ export default function Checkout() {
     }
   });
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const shipping = 15; // Flat rate luxury shipping
+  const shipping = subtotal > 0 ? 15 : 0; // Flat rate luxury shipping, only if cart not empty
   const total = subtotal + shipping;
 
   const onSubmit = async (data: CheckoutFormValues) => {
@@ -71,6 +65,7 @@ export default function Checkout() {
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     console.log("Order processed:", data);
+    clearCart();
     setStep('success');
     window.scrollTo(0, 0);
     toast({
@@ -225,8 +220,8 @@ export default function Checkout() {
           <h2 className="text-2xl font-serif mb-8">Order Summary</h2>
           
           <div className="space-y-6 mb-8">
-            {cartItems.map((item) => (
-              <div key={item.id} className="flex gap-4">
+            {items.map((item) => (
+              <div key={`${item.id}-${item.size}`} className="flex gap-4">
                 <div className="h-20 w-16 bg-white overflow-hidden border border-border">
                   <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
                 </div>

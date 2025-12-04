@@ -5,12 +5,14 @@ import { useRoute } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/lib/CartContext";
 
 export default function ProductDetail() {
   const [, params] = useRoute("/product/:id");
   const product = products.find(p => p.id === params?.id);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const { toast } = useToast();
+  const { addToCart } = useCart();
 
   if (!product) return <div>Product not found</div>;
 
@@ -23,6 +25,8 @@ export default function ProductDetail() {
       });
       return;
     }
+    
+    addToCart(product, selectedSize);
     
     toast({
       title: "Added to cart",

@@ -49,7 +49,7 @@ export default function Navbar() {
         </div>
 
         {/* Logo */}
-        <Link href="/" className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:mx-0">
           <img src={logo} alt="Ashtray Fashion" className="h-10 w-10 object-contain mix-blend-multiply" />
            <span className={`font-serif text-xl tracking-widest-luxury font-bold ${isScrolled || !isHome ? "text-foreground" : "text-white"}`}>
             ASHTRAY
@@ -58,10 +58,10 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className={`hidden md:flex items-center gap-8 ${isScrolled || !isHome ? "text-foreground" : "text-white/90"}`}>
-          <Link href="/" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">Home</Link>
-          <Link href="/shop" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">Shop</Link>
-          <Link href="/lookbook" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">Lookbook</Link>
-          <Link href="/about" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">About</Link>
+          <Link href="/" className="hover:text-primary transition-colors text-sm uppercase tracking-widest whitespace-nowrap">Home</Link>
+          <Link href="/shop" className="hover:text-primary transition-colors text-sm uppercase tracking-widest whitespace-nowrap">Shop</Link>
+          <Link href="/lookbook" className="hover:text-primary transition-colors text-sm uppercase tracking-widest whitespace-nowrap">Lookbook</Link>
+          <Link href="/about" className="hover:text-primary transition-colors text-sm uppercase tracking-widest whitespace-nowrap">About</Link>
         </div>
 
         {/* Cart */}
