@@ -10,6 +10,7 @@ import Shop from "@/pages/Shop";
 import ProductDetail from "@/pages/ProductDetail";
 import Lookbook from "@/pages/Lookbook";
 import About from "@/pages/About";
+import Checkout from "@/pages/Checkout";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/shop" component={Shop} />
       <Route path="/lookbook" component={Lookbook} />
       <Route path="/about" component={About} />
+      <Route path="/checkout" component={Checkout} />
       <Route path="/product/:id" component={ProductDetail} />
       <Route component={NotFound} />
     </Switch>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag, Minus, Plus, X } from "lucide-react";
 import { useState } from "react";
 import { products } from "@/lib/data";
+import { Link } from "wouter";
 
 interface CartDrawerProps {
   triggerColor?: string;
@@ -69,9 +70,11 @@ export default function CartDrawer({ triggerColor = "text-foreground" }: CartDra
             <span>${total.toFixed(2)}</span>
           </div>
           <p className="text-xs text-muted-foreground text-center">Shipping and taxes calculated at checkout.</p>
-          <Button className="w-full rounded-none py-6 uppercase tracking-widest text-xs bg-foreground text-background hover:bg-foreground/90">
-            Checkout
-          </Button>
+          <Link href="/checkout">
+            <Button className="w-full rounded-none py-6 uppercase tracking-widest text-xs bg-foreground text-background hover:bg-foreground/90">
+              Checkout
+            </Button>
+          </Link>
         </div>
       </SheetContent>
     </Sheet>
