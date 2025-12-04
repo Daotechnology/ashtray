@@ -60,6 +60,7 @@ export default function Navbar() {
         <div className={`hidden md:flex items-center gap-8 ${isScrolled || !isHome ? "text-foreground" : "text-white/90"}`}>
           <Link href="/" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">Home</Link>
           <Link href="/shop" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">Shop</Link>
+          <Link href="/lookbook" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">Lookbook</Link>
           <Link href="/about" className="hover:text-primary transition-colors text-sm uppercase tracking-widest">About</Link>
         </div>
 
